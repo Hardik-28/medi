@@ -1,7 +1,6 @@
 package com.example.medi;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,27 +16,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Source;
-
-import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Document;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     EditText registerName,Email,Password,registerPhn,registerSpecialist;
     Button registerButton;
     TextView registerLoginText;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    String userId;
+
 
 
     @Override
@@ -56,15 +49,11 @@ class Register extends AppCompatActivity {
         fAuth =FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),Login.class));
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
             finish();
         }
-
-
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,17 +83,17 @@ class Register extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "User Created", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                     };
 
                                 }
                             });
-                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "User Created", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                         else{
-                            Toast.makeText(Register.this, "Error !"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Error !"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -116,9 +105,20 @@ class Register extends AppCompatActivity {
         registerLoginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
             }
         });
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        }
+        else{
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        }
+    }
+
 }
