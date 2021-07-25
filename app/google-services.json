@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "63885356836",
+    "project_id": "medi-bfe37",
+    "storage_bucket": "medi-bfe37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63885356836:android:a34c9054f4f7265e27cdb1",
+        "android_client_info": {
+          "package_name": "com.example.medi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63885356836-1q0ms61pt85ls25r26oht6jgq0a9i6e8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxDCFTm9g0GAXbWQPuciCnmSvFPqIcHvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63885356836-1q0ms61pt85ls25r26oht6jgq0a9i6e8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
